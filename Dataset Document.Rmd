@@ -1,0 +1,57 @@
+---
+title: "Dataset Document"
+author: "Shadman Raakin"
+date: '2023-01-28'
+output: html_document
+---
+
+# Adding the libraries
+```{r}
+library(shiny)
+library(tidyverse)
+library(ggplot2)
+library(lubridate)
+library(bslib)
+```
+
+# Loading the dataset 
+```{r}
+Covid_Dataset <- read.csv("illinois_shield_covid_data_.csv", stringsAsFactors = FALSE)
+```
+
+
+# Groups for the dataset
+```{r}
+Groups <- c("Undergraduates", "Graduates", "Faculty/Staff")
+
+```
+
+# Adding coloumns to dataset: TotalCases, Total_Tests_Taken, Positivity_Rate, and positivity rates for each group (UG_Positivity_Rate, Grad_Positivity_Rate, Faculty_Positivity_Rate)
+```{r}
+Updated_Covid_Dataset <- Covid_Dataset %>%
+  mutate(Date = (as.Date(Covid_Dataset$time))) %>%
+  mutate(TotalCases = cumsum(totalNewCases)) %>% 
+  mutate(Total_Tests_Taken = cumsum(totalNewTests)) %>%
+  mutate(Positivity_Rate = (totalNewCases / totalNewTests) *100) %>%
+  mutate(UG_Positivity_Rate = (undergradCases / undergradTests) * 100) %>%
+  mutate(Grad_Positivity_Rate = (gradCases / gradTests) * 100) %>%
+  mutate(Faculty_Positivity_Rate = (facStaffCases / facStaffTests) * 100) %>%
+  select(Date, totalNewCases:Faculty_Positivity_Rate) 
+Updated_Covid_Dataset <- na.omit(Updated_Covid_Dataset)
+row.names(Updated_Covid_Dataset) <- NULL
+```
+
+
+```{r}
+undergradCases <- as.numeric(Updated_Covid_Dataset$undergradCases)
+gradCases <- as.numeric(Updated_Covid_Dataset$gradCases)
+facStaffCases <- as.numeric(Updated_Covid_Dataset$facStaffCases)
+UG_Positivity_Rate <- as.numeric(Updated_Covid_Dataset$UG_Positivity_Rate)
+Grad_Positivity_Rate <- as.numeric(Updated_Covid_Dataset$Grad_Positivity_Rate)
+Faculty_Positivity_Rate <- as.numeric(Updated_Covid_Dataset$Faculty_Positivity_Rate)
+time1 <- as.numeric(Updated_Covid_Dataset$time)
+```
+
+
+
+

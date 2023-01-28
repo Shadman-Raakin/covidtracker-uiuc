@@ -1,0 +1,25 @@
+## Author 
+
+- Shadman Raakin
+
+- shadmanr678@gmail.com
+
+## Purpose
+
+2020-2021 UIUC Covid Tracker: This app records all positive COVID cases in UIUC between August 2020 - November 2021. The groups include undergraduate students, graduate students, and faculty / staff. The user can select the specific group as well as select the date range to see number of positive cases that occured in any day. Additionally, The Positivity Rate check box displays another graph below the Cases graph, which shows the positivity rate among each group (cases/tests). This app can be used to observe or study the positive cases which occurred in UIUC.
+
+## Data 
+
+This data come from the Illinois Shield Testing Data website, which records all cases and tests taken for each group.
+
+The relevant columns include the cases and tests taken for each group as well as the date (Dates, undergradCases, undergradTests, gradCases, gradTests, facStaffCases, facStaffTests). Additional columns have been added such as the positivity rate for each group which is the number of cases over the number of tests taken (UG_Positivity_Rate, Grad_Positivity_Rate, Faculty_Positivity_Rate). 
+ 
+
+## References
+
+Data:
+https://splunk-public.machinedata.illinois.edu/en-US/app/uofi_shield_public_APP/home
+
+
+
+
